@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { createProduct, deleteById, getProductById, updateProductById } from '../controllers/products.controller.js'
+import { createProduct, deleteById, getProductById, getProducts, updateProductById } from '../controllers/products.controller.js'
 import { bodyValidatorMiddleware } from '../middlewares/body-validator.middleware.js'
 import { loggingMiddleware } from '../middlewares/logging.middleware.js'
 import { paramsValidatorMiddleware } from '../middlewares/params-validator.middleware.js'
@@ -22,7 +22,7 @@ const baseURI = '/products'
      DELETE    --------> DELETE --------> deleteProductById
 */
 productsRouter.post( baseURI, loggingMiddleware, bodyValidatorMiddleware, createProduct )
-//productsRouter.get( baseURI, getProducts )
+productsRouter.get( baseURI, getProducts )
 productsRouter.get( `${ baseURI }/:id`, paramsValidatorMiddleware, getProductById )
 productsRouter.put( `${ baseURI }/:id`, updateProductById )
 productsRouter.patch( `${ baseURI }/:id` )
